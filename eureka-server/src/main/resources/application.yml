@@ -1,0 +1,17 @@
+server:
+  port: 5460
+
+spring:
+  application:
+    name: eurka-server
+
+#通过eureka.client.registerWithEureka：false和fetchRegistry：false来表明自己是一个eureka server
+#service-url必须写成 defaultZone ，而不能写成 default-zone，否则识别不了端口会使用默认的8761
+eureka:
+  instance:
+    hostname: 127.0.0.1
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
